@@ -1,0 +1,42 @@
+//---------------------------------------------------------------------------
+
+#include <vcl.h>
+#pragma hdrstop
+
+#include "Unit4.h"
+//---------------------------------------------------------------------------
+#pragma package(smart_init)
+#pragma resource "*.dfm"
+TForm4 *Form4;
+
+float X, Y;
+float xMove=0, yMove=2;
+//---------------------------------------------------------------------------
+__fastcall TForm4::TForm4(TComponent* Owner)
+        : TForm(Owner)
+{
+        X = Shape1->Left;
+        Y = Shape1->Top;
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TForm4::FormCreate(TObject *Sender)
+{
+        Form4->Timer1->Enabled = True;
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TForm4::Timer1Timer(TObject *Sender)
+{
+        //X += xMove;
+        Y += yMove;
+
+        //Form4->Refresh();
+        Shape1->Left = X;
+        Shape1->Top = Y;
+
+        if(Y>=Form4->Height)
+                yMove *= -1;
+}
+//---------------------------------------------------------------------------
+
